@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <title>Nuevo Viaje</title>
+    </head>
+    <body>
+        <main>
+            <div class="container px-4 py-5">
+                <h1 class="pb-2 mb-3 border-bottom">Nuevo Viaje</h1>
+                <a class="btn btn-primary mb-4" th:href="@{'/nuevamascota'}">Nuevo Mascota</a>
+                <form method="post" th:action="@{/saveviaje}" class="mt-2">
+
+                    <input th:value="${numero}" type="hidden" class="form-control" name="idviaje" id="idviaje" >
+                    <div class="mb-3">
+                        <label for="puntoRecojo" class="form-label">Punto de recojo</label>
+                        <input type="text" class="form-control" name="puntoRecojo" id="puntoRecojo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="personaIdpersona" class="form-label">Selector de personas</label>
+                        <select class="form-select" name="personaIdpersona" id="personaIdpersona">
+                            <option th:each="listap: ${listapersona}"
+                                    th:text="${listap.nombre}" th:value="${listap.id}">Open this select menu</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lugaresIdlugares" class="form-label">Selector de Lugares</label>
+                        <select class="form-select" name="lugaresIdlugares" id="lugaresIdlugares">
+                            <option th:each="listalugares: ${listalugares}"
+                                    th:text="${listalugares.nombreLugar}" th:value="${listalugares.id}">Open this select menu</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantPersonas" class="form-label">Cantidad de personas</label>
+                        <input type="text" class="form-control" name="cantPersonas" id="cantPersonas">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantPerros" class="form-label">Cantidad de perros</label>
+                        <input type="text" class="form-control" name="cantPerros" id="cantPerros">
+                    </div>
+                    <a th:href="@{/viajes}" class="btn btn-danger">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+            </div>
+        </main>
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </body>
+</html>
